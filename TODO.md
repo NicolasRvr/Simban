@@ -81,11 +81,11 @@ Pour les textes, le plus simple c'est de reprendre les pages du site actuel et d
     * partenariats*
     * evenements*
     * Adresses Locales*
+
 * Post-internat
     * Remplacements
     * Aide installation*
     * Structures Officiels*
-
 
 Pour le format du texte, pour que ce soit plus simple pour moi à gérer, un word bien organisé me convient. 
 Avec des titres, sous-titres, textes et images. 
