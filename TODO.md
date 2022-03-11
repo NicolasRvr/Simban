@@ -1,6 +1,10 @@
+## TODO
+* [ ] Rendre responsive le site web
+* [ ] Modifier Items dans NavBar pour ajouter le nom du renvoi (vue router) (transmo liste into liste de dictionnaire)
+* [ ] Faire fonctionner les nouvelles icones fa-brands fa-facebook
+* 
 
-Logo SVG
-Architecture back end
+## Projet
 
     Acceuil
         marin/terroir/
@@ -95,10 +99,3 @@ Il me semble que certains points du site sont obsolètes ou un peu lourd à la l
 
 Voilà
 @Corentin n'hésite pas à me corriger si je dis des anneries.  
-
-
-
-
-ressources pour modifier dynamiquement l'id et la classe dans une boucle django 
-https://teamtreehouse.com/community/dynamically-change-div-class-inside-django-template-for-loop
-https://stackoverflow.com/questions/11481499/django-iterate-number-in-for-loop-of-a-template

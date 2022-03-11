@@ -1,10 +1,10 @@
 <template>
   <footer class="footer shadow">
     <section class="footer__informations">
-      <a class="mentions_legales white" href="#">Mentions Légales</a>
+      <router-link to="#" class="mentions_legales white" >Mentions Légales</router-link>
       <div class="social-icons white">
-        <a v-for="(icon, id) in icons" :key="id" :href="icon.link"
-          ><i :class="icon.classe"></i
+        <a v-for="(icon, id) in icons" :key="id" :href="icon.link" target="_blank"
+          ><i :class="icon.class"></i
         ></a>
       </div>
     </section>
@@ -19,8 +19,8 @@ export default {
   data() {
     return {
       icons: [
-        { name: "Facebook", link: "#", classe: "fa-brands fa-facebook" },
-        { name: "Instagram", link: "#", classe: "fa-brands fa-instagram" },
+        { name: "Facebook", link: "https://www.facebook.com/SIMBANIMG", class: "fab fa-facebook" },
+        { name: "Instagram", link: "#", class: "fab fa-instagram" },
       ],
     };
   },
@@ -32,8 +32,9 @@ export default {
 <style lang="scss">
 .footer {
   position: fixed;
+  bottom: 0;
   width: 100%;
-  height: 18%;
+  height: 20%;
   &__informations,
   &__copyright {
     display: flex;
@@ -56,8 +57,8 @@ export default {
 
 .social-icons {
   i {
-    padding: 0 10px 0 10px;
-    font-size: 200%;
+    padding: 0 20px 0 20px;
+    font-size: 300%;
   }
 }
 </style>

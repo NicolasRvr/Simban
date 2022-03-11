@@ -22,8 +22,8 @@
                 class="navbar__links"
                 to="#"
                 @click="toggleItems(item.name)"
-                >{{ item.name }}<span class="arrow"></span></router-link
-              >
+                >{{ item.name }}<span class="arrow"></span
+              ></router-link>
               <ul class="submenu shadow" v-if="item.show">
                 <router-link
                   class="navbar__links submenu__items"
@@ -32,7 +32,7 @@
                   :key="id2"
                   @click="ResetToggleItems"
                 >
-                  {{ subitem }}
+                  {{ subitem.title }}
                 </router-link>
               </ul>
             </div>
@@ -58,34 +58,47 @@ export default {
       items: [
         {
           name: "Région",
+          slug: "region",
           menu: [],
           show: false,
         },
         {
           name: "Syndicat",
-          menu: ["Présentation", "Nous contacter", "FAQ"],
+          menu: [
+            { title: "Présentation", slug: "presentation" },
+            { title: "Nous contacter", slug: "contact-us" },
+            { title: "FAQ", slug: "faq" },
+          ],
           show: false,
         },
         {
           name: "Néo-Internes",
-          menu: ["Informations", "Formation", "Choisir la Normandie"],
+          menu: [
+            { title: "Informations", slug: "informations" },
+            { title: "Formation", slug: "formation" },
+            { title: "Choisir la Normandie", slug: "choisir-normandie" },
+          ],
           show: false,
         },
         {
           name: "Internes",
           menu: [
-            "Stages",
-            "Vos droits",
-            "Thèse",
-            "Partenariats",
-            "Evenements",
-            "Adresses Locales",
+            { title: "Stages", slug: "stages" },
+            { title: "Vos droits", slug: "vos-droits" },
+            { title: "Thèse", slug: "these" },
+            { title: "Partenariats", slug: "partenariats" },
+            { title: "Evenements", slug: "evenements" },
+            { title: "Adresses Locales", slug: "adresses-locales" },
           ],
           show: false,
         },
         {
           name: "Post-Internat",
-          menu: ["Remplacement", "Aide installation", "Structures Officiels"],
+          menu: [
+            { title: "Remplacement", slug: "remplacement" },
+            { title: "Aide installation", slug: "aide-installation" },
+            { title: "Structures Officiels", slug: "structures-officiels" },
+          ],
           show: false,
         },
       ],
@@ -112,9 +125,14 @@ export default {
 </script>
 
 <style lang="scss">
+// Variable sur la hauteur de la navbar (pour prise en compte dans les différenes pages du site)
+$height-navbar: 30px;
+
 // navbar definition
 .navbar {
-  width:100%;
+  // possible de changer pour un parametrage de la hauteur de la navbar en fonction de la hauteur totale de la page
+  //  dans ce cas il faudrait changer le padding de chaque links et modifier le relative pour que le submenu tombe bien
+  width: 100%;
   position: fixed;
   display: flex;
   align-items: center;
@@ -123,10 +141,14 @@ export default {
     display: flex;
     color: $white-texte;
     // border: 1px solid black;
-    padding: 30px 50px 30px 20px;
+    padding: $height-navbar 50px $height-navbar 20px;
     text-decoration: none;
     letter-spacing: 1px;
     font-weight: 300;
+    &:hover {
+      color: $hover-color;
+      transition: all 0.5s ease-in-out;
+    }
   }
   .branding {
     padding-left: 60px;
@@ -159,8 +181,14 @@ export default {
       width: 100%;
       padding: 20px 50px 20px 20px;
       font-size: 0.8em;
-      &:hover{
-        background: blue;
+
+      &:hover {
+        background: $hover-color;
+        box-shadow: 0 0 10px $hover-color;
+        transform: scale(1.05);
+        border-radius: 10px;
+        transition: all 0.5s ease-in-out;
+        color: $white-texte;
       }
     }
   }
@@ -175,27 +203,26 @@ export default {
   height: 11px;
   width: 2px;
   background-color: transparent;
-  
+
   &:after {
-    position:absolute;
+    position: absolute;
     display: inline-block;
-    content:"";
-    height:100%;
-    width:100%;
+    content: "";
+    height: 100%;
+    width: 100%;
     transform: translateX(-3px) rotate(-45deg);
     background: $white-texte;
   }
-    &:before {
-    position:absolute;
+  &:before {
+    position: absolute;
     display: inline-block;
-    content:"";
-    height:100%;
-    width:100%;
+    content: "";
+    height: 100%;
+    width: 100%;
     transform: translateX(3px) rotate(45deg);
     background: $white-texte;
   }
 }
-
 
 // Hamburger definition
 .toggle__button {
