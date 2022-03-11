@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="navbar">
+    <nav class="navbar shadow">
       <router-link
         @click="ResetToggleItems"
         class="navbar__links branding"
@@ -19,12 +19,12 @@
             >
             <div class="menu__links" v-else>
               <router-link
-                class="navbar__links item__arrow"
+                class="navbar__links"
                 to="#"
                 @click="toggleItems(item.name)"
-                >{{ item.name }}</router-link
+                >{{ item.name }}<span class="arrow"></span></router-link
               >
-              <ul class="submenu" v-if="item.show">
+              <ul class="submenu shadow" v-if="item.show">
                 <router-link
                   class="navbar__links submenu__items"
                   to="#"
@@ -57,11 +57,6 @@ export default {
       showMenu: true,
       items: [
         {
-          name: "Accueil",
-          menu: [],
-          show: false,
-        },
-        {
           name: "Région",
           menu: [],
           show: false,
@@ -73,7 +68,7 @@ export default {
         },
         {
           name: "Néo-Internes",
-          menu: ["Informations", "Formation", "Choisir la normandie"],
+          menu: ["Informations", "Formation", "Choisir la Normandie"],
           show: false,
         },
         {
@@ -116,19 +111,28 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 // navbar definition
 .navbar {
-  position: relative;
+  width:100%;
+  position: fixed;
   display: flex;
   align-items: center;
-  background-color: $button-color;
+  background-color: $primary-color;
   &__links {
     display: flex;
     color: $white-texte;
-    border: 1px solid black;
-    padding: 20px 40px 20px 40px;
+    // border: 1px solid black;
+    padding: 30px 50px 30px 20px;
     text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 300;
+  }
+  .branding {
+    padding-left: 60px;
+    letter-spacing: 5px;
+    font-size: 1.2em;
+    font-weight: 300;
   }
   &__main {
     &__container {
@@ -144,35 +148,54 @@ export default {
 .menu__links {
   position: relative;
   .submenu {
-    background-color: $button-color;
+    background-color: $primary-color;
     position: absolute;
     display: flex;
     flex-direction: column;
     width: 100%;
     top: 100%;
     &__items {
-      margin: auto;
+      text-align: left;
       width: 100%;
+      padding: 20px 50px 20px 20px;
+      font-size: 0.8em;
+      &:hover{
+        background: blue;
+      }
     }
   }
 }
 
-// item__arrow
-.item__arrow {
+// arrow
+.arrow {
   position: relative;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 5px;
+  height: 11px;
+  width: 2px;
+  background-color: transparent;
+  
   &:after {
-    position: absolute;
-    top: 45%;
-    right: 8%;
+    position:absolute;
     display: inline-block;
-    content: "";
-    width: 12px;
-    height: 12px;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    border-left: 2px solid white;
-    border-bottom: 2px solid white;
+    content:"";
+    height:100%;
+    width:100%;
+    transform: translateX(-3px) rotate(-45deg);
+    background: $white-texte;
+  }
+    &:before {
+    position:absolute;
+    display: inline-block;
+    content:"";
+    height:100%;
+    width:100%;
+    transform: translateX(3px) rotate(45deg);
+    background: $white-texte;
   }
 }
+
 
 // Hamburger definition
 .toggle__button {
@@ -183,20 +206,20 @@ export default {
   right: 2%;
   width: 45px;
   height: 45px;
-  border: 2px solid white;
+  border: 2px solid $white-texte;
   border-radius: 10px;
   cursor: pointer;
   .hamburger {
     width: 65%;
     height: 2px;
-    background: white;
+    background: $white-texte;
     &:after,
     &:before {
       display: flex;
       content: "";
       width: 100%;
       height: 100%;
-      background: white;
+      background: $white-texte;
     }
     &:after {
       transform: translate(0%, -50%) translateY(7.5px);

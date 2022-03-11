@@ -1,28 +1,49 @@
 <template>
   <NavBar />
-  <router-view/>
+  <router-view />
+  <FootBar />
 </template>
 
 <script>
 // @ is an alias to /src
-import NavBar from '@/components/NavBar.vue';
+import NavBar from "@/components/NavBar.vue";
+import FootBar from "@/components/FootBar.vue";
 
 export default {
   name: "app",
   components: {
-    NavBar
-  }
-}
+    NavBar,
+    FootBar,
+  },
+};
 </script>
 
 <style lang="scss">
-
 #app {
-  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+}
+
+.white {
+  color: $white-texte;
+  text-decoration: none;
+
+  a {
+    color: $white-texte;
+    text-decoration: none;
+  }
+}
+
+.shadow {
+  box-shadow: 0 0 10px black;
 }
 
 // nav {
