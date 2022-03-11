@@ -3,30 +3,30 @@
     <nav class="navbar shadow">
       <router-link
         @click="ResetToggleItems"
-        class="navbar__links branding"
+        class="links branding"
         :to="{ name: 'home' }"
         >SIMBAN</router-link
       >
-      <div v-if="showMenu" class="navbar__main">
+      <div class="navbar__main">
         <ul class="navbar__main__container">
           <li v-for="(item, id) in items" :key="id">
             <router-link
               @click="ResetToggleItems"
-              class="navbar__links"
+              class="links navbar__main__container__items"
               to="#"
               v-if="item.menu.length === 0"
               >{{ item.name }}</router-link
             >
             <div class="menu__links" v-else>
               <router-link
-                class="navbar__links"
+                class="links navbar__main__container__items"
                 to="#"
                 @click="toggleItems(item.name)"
                 >{{ item.name }}<span class="arrow"></span
               ></router-link>
               <ul class="submenu shadow" v-if="item.show">
                 <router-link
-                  class="navbar__links submenu__items"
+                  class="links submenu__items"
                   to="#"
                   v-for="(subitem, id2) in item.menu"
                   :key="id2"
@@ -40,10 +40,38 @@
         </ul>
       </div>
       <!-- Ici on coupe en 2 pour la partie responsive -->
-      <div class="toggle__button">
+      <div class="toggle__button" @click="toggleMenu">
         <span class="hamburger"></span>
       </div>
-      <div class="responsive_navbar"></div>
+      <div v-if="showMenu" class="navbar__responsive shadow">
+        <ul class="navbar__responsive__container">
+          <li v-for="(item, id) in items" :key="id">
+            <router-link
+              @click="ResetToggleItems"
+              class="links"
+              to="#"
+              v-if="item.menu.length === 0"
+              >{{ item.name }}</router-link
+            >
+            <div class="menu__links" v-else>
+              <router-link class="links" to="#" @click="toggleItems(item.name)"
+                >{{ item.name }}<span class="arrow"></span
+              ></router-link>
+              <ul class="submenu shadow" v-if="item.show">
+                <router-link
+                  class="links submenu__items"
+                  to="#"
+                  v-for="(subitem, id2) in item.menu"
+                  :key="id2"
+                  @click="ResetToggleItems"
+                >
+                  {{ subitem.title }}
+                </router-link>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
 </template>
@@ -119,6 +147,11 @@ export default {
         element.show = false;
       }
     },
+    toggleMenu() {
+      console.log(this.showMenu);
+      this.showMenu = !this.showMenu;
+      this.ResetToggleItems();
+    },
   },
   computed: {},
 };
@@ -126,43 +159,40 @@ export default {
 
 <style lang="scss">
 // Variable sur la hauteur de la navbar (pour prise en compte dans les différenes pages du site)
-$height-navbar: 30px;
+$height-navbar: 7.5%;
 
 // navbar definition
 .navbar {
   // possible de changer pour un parametrage de la hauteur de la navbar en fonction de la hauteur totale de la page
   //  dans ce cas il faudrait changer le padding de chaque links et modifier le relative pour que le submenu tombe bien
   width: 100%;
+  height: $height-navbar;
   position: fixed;
   display: flex;
   align-items: center;
   background-color: $primary-color;
-  &__links {
-    display: flex;
-    color: $white-texte;
-    // border: 1px solid black;
-    padding: $height-navbar 50px $height-navbar 20px;
-    text-decoration: none;
-    letter-spacing: 1px;
-    font-weight: 300;
-    &:hover {
-      color: $hover-color;
-      transition: all 0.5s ease-in-out;
-    }
-  }
-  .branding {
-    padding-left: 60px;
-    letter-spacing: 5px;
-    font-size: 1.2em;
-    font-weight: 300;
-  }
   &__main {
+    position: relative;
     &__container {
       display: flex;
+      &__items {
+        padding: 0 50px 0 20px;
+        // border: 1px solid black;
+      }
     }
   }
   &__responsive {
-    color: red;
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    width: 15%;
+    height: 100vw;
+    z-index: 1000;
+    background: $primary-color;
+    &__container {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 
@@ -181,7 +211,6 @@ $height-navbar: 30px;
       width: 100%;
       padding: 20px 50px 20px 20px;
       font-size: 0.8em;
-
       &:hover {
         background: $hover-color;
         box-shadow: 0 0 10px $hover-color;
@@ -192,6 +221,32 @@ $height-navbar: 30px;
       }
     }
   }
+}
+
+// font n size
+
+// links
+.links,
+.branding {
+  font-weight: 300;
+}
+
+.links {
+  color: $white-texte;
+  text-decoration: none;
+  letter-spacing: 1px;
+  &:hover {
+    color: $hover-color;
+    transition: all 0.5s ease-in-out;
+  }
+}
+// branding
+
+.branding {
+  padding-left: 60px;
+  padding-right: 20px;
+  letter-spacing: 5px;
+  font-size: 1.2em;
 }
 
 // arrow

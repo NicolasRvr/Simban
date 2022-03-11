@@ -1,6 +1,7 @@
 ## TODO
+* [X] Modifier Items dans NavBar pour ajouter le nom du renvoi (vue router) (transmo liste into liste de dictionnaire)
+* [X] Regarder pour modifier la facon de definir la navbar en fonction d'un % du vp.
 * [ ] Rendre responsive le site web
-* [ ] Modifier Items dans NavBar pour ajouter le nom du renvoi (vue router) (transmo liste into liste de dictionnaire)
 * [ ] Faire fonctionner les nouvelles icones fa-brands fa-facebook
 * 
 

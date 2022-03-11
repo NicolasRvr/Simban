@@ -35,6 +35,7 @@ export default {
   bottom: 0;
   width: 100%;
   height: 20%;
+  z-index: 0;
   &__informations,
   &__copyright {
     display: flex;
