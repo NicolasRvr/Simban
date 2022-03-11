@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+@import '../styles/utils/reset.scss';
+
+$main-color: #FFFFFF;
+$second-color: #B8DBFF;
+$button-color: #1D354F;
+$text-color: #7D8994;
+$title-color: #1D354F;
+$white-texte: #F1F1F1;
+
+*, ::after, ::before {
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+    
+  body {
+    position: relative;
+    display:block;
+    height: 100vh;
+    width: 100%;
+    font-family: "Raleway", sans-serif;
+  }
+ 
