@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="navbar shadow">
+    <nav class="navbar">
       <router-link
         @click="ResetToggleItems"
         class="links branding"
@@ -8,7 +8,7 @@
         >SIMBAN</router-link
       >
       <ul class="navbar__main">
-        <li v-for="(item, id) in items" :key="id">
+        <li class="navbar__main__list" v-for="(item, id) in items" :key="id">
           <router-link
             @click="ResetToggleItems"
             class="links"
@@ -20,7 +20,7 @@
             <router-link class="links" to="#" @click="toggleItems(item.name)"
               >{{ item.name }}<span class="arrow"></span
             ></router-link>
-            <ul class="main__menu__submenu shadow" v-if="item.show">
+            <ul class="main__menu__submenu" v-if="item.show">
               <router-link
                 class="links sub__links"
                 to="#"
@@ -52,7 +52,7 @@
             <router-link class="links" to="#" @click="toggleItems(item.name)"
               >{{ item.name }}<span class="arrow"></span
             ></router-link>
-            <ul class="responsive__menu__submenu shadow" v-if="item.show">
+            <ul class="responsive__menu__submenu" v-if="item.show">
               <router-link
                 class="links sub__links"
                 to="#"
@@ -167,6 +167,12 @@ $height-navbar: 60px;
     position: relative;
     display: flex;
     align-items: center;
+    &__list {
+      // position:relative;
+      border: 1px solid black;
+      // background: red;
+
+    }
   }
   &__reponsive {
     background-color: $primary-color;
@@ -187,10 +193,12 @@ $height-navbar: 60px;
     position: absolute;
     width: 100%;
     background-color: $primary-color;
-    transform-origin: -50% -50%;
     top: 100%;
     display: flex;
     flex-direction: column;
+  }
+  &__items {
+    border: 1px solid black;
   }
 }
 
@@ -207,7 +215,7 @@ $height-navbar: 60px;
   padding: 20px;
   text-decoration: none;
   letter-spacing: 1px;
-  border: 1px solid black;
+  // border: 1px solid black;
   &:hover {
     color: $hover-color;
     transition: all 0.5s ease-in-out;
@@ -220,18 +228,23 @@ $height-navbar: 60px;
   background: red;
   width: 100%;
   font-size: 0.8em;
+  z-index: 1000;
+  &:hover {
+    color: $white-texte;
+    background: $hover-color;
+    border-radius: 10px;
+    transform: scale(1.05);
+    transition: all 0.5s ease-in-out;
+  }
 }
 // branding
 
 .branding {
-  // padding-left: 60px;
-  // padding-right: 20px;
   letter-spacing: 5px;
   font-size: 1.2em;
 }
 
 // arrow
-
 
 // .arrow {
 //   position: relative;
@@ -263,6 +276,7 @@ $height-navbar: 60px;
 // }
 
 // Hamburger definition
+
 .toggle__button {
   display: flex;
   align-items: center;
