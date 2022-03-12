@@ -7,71 +7,65 @@
         :to="{ name: 'home' }"
         >SIMBAN</router-link
       >
-      <div class="navbar__main">
-        <ul class="navbar__main__container">
-          <li v-for="(item, id) in items" :key="id">
-            <router-link
-              @click="ResetToggleItems"
-              class="links navbar__main__container__items"
-              to="#"
-              v-if="item.menu.length === 0"
-              >{{ item.name }}</router-link
-            >
-            <div class="menu__links" v-else>
+      <ul class="navbar__main">
+        <li v-for="(item, id) in items" :key="id">
+          <router-link
+            @click="ResetToggleItems"
+            class="links"
+            to="#"
+            v-if="item.menu.length === 0"
+            >{{ item.name }}</router-link
+          >
+          <div class="main__menu" v-else>
+            <router-link class="links" to="#" @click="toggleItems(item.name)"
+              >{{ item.name }}<span class="arrow"></span
+            ></router-link>
+            <ul class="main__menu__submenu shadow" v-if="item.show">
               <router-link
-                class="links navbar__main__container__items"
+                class="links sub__links"
                 to="#"
-                @click="toggleItems(item.name)"
-                >{{ item.name }}<span class="arrow"></span
-              ></router-link>
-              <ul class="submenu shadow" v-if="item.show">
-                <router-link
-                  class="links submenu__items"
-                  to="#"
-                  v-for="(subitem, id2) in item.menu"
-                  :key="id2"
-                  @click="ResetToggleItems"
-                >
-                  {{ subitem.title }}
-                </router-link>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </div>
+                v-for="(subitem, id2) in item.menu"
+                :key="id2"
+                @click="ResetToggleItems"
+              >
+                {{ subitem.title }}
+              </router-link>
+            </ul>
+          </div>
+        </li>
+      </ul>
+
       <!-- Ici on coupe en 2 pour la partie responsive -->
       <div class="toggle__button" @click="toggleMenu">
         <span class="hamburger"></span>
       </div>
-      <div v-if="showMenu" class="navbar__responsive shadow">
-        <ul class="navbar__responsive__container">
-          <li v-for="(item, id) in items" :key="id">
-            <router-link
-              @click="ResetToggleItems"
-              class="links"
-              to="#"
-              v-if="item.menu.length === 0"
-              >{{ item.name }}</router-link
-            >
-            <div class="menu__links" v-else>
-              <router-link class="links" to="#" @click="toggleItems(item.name)"
-                >{{ item.name }}<span class="arrow"></span
-              ></router-link>
-              <ul class="submenu shadow" v-if="item.show">
-                <router-link
-                  class="links submenu__items"
-                  to="#"
-                  v-for="(subitem, id2) in item.menu"
-                  :key="id2"
-                  @click="ResetToggleItems"
-                >
-                  {{ subitem.title }}
-                </router-link>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <ul v-if="showMenu" class="navbar__reponsive">
+        <li v-for="(item, id) in items" :key="id">
+          <router-link
+            @click="ResetToggleItems"
+            class="links"
+            to="#"
+            v-if="item.menu.length === 0"
+            >{{ item.name }}</router-link
+          >
+          <div class="responsive__menu" v-else>
+            <router-link class="links" to="#" @click="toggleItems(item.name)"
+              >{{ item.name }}<span class="arrow"></span
+            ></router-link>
+            <ul class="responsive__menu__submenu shadow" v-if="item.show">
+              <router-link
+                class="links sub__links"
+                to="#"
+                v-for="(subitem, id2) in item.menu"
+                :key="id2"
+                @click="ResetToggleItems"
+              >
+                {{ subitem.title }}
+              </router-link>
+            </ul>
+          </div>
+        </li>
+      </ul>
     </nav>
   </header>
 </template>
@@ -157,69 +151,46 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 // Variable sur la hauteur de la navbar (pour prise en compte dans les différenes pages du site)
-$height-navbar: 7.5%;
+$height-navbar: 60px;
 
 // navbar definition
 .navbar {
-  // possible de changer pour un parametrage de la hauteur de la navbar en fonction de la hauteur totale de la page
-  //  dans ce cas il faudrait changer le padding de chaque links et modifier le relative pour que le submenu tombe bien
-  width: 100%;
-  height: $height-navbar;
   position: fixed;
+  width: 100%;
+  // height: $height-navbar;
   display: flex;
   align-items: center;
   background-color: $primary-color;
   &__main {
     position: relative;
-    &__container {
-      display: flex;
-      &__items {
-        padding: 0 50px 0 20px;
-        // border: 1px solid black;
-      }
-    }
+    display: flex;
+    align-items: center;
   }
-  &__responsive {
+  &__reponsive {
+    background-color: $primary-color;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     position: absolute;
+    // height: 100vw;
+    width: 10%;
     top: 100%;
     right: 0%;
-    width: 15%;
-    height: 100vw;
-    z-index: 1000;
-    background: $primary-color;
-    &__container {
-      display: flex;
-      flex-direction: column;
-    }
   }
 }
 
-// submenu definition
-.menu__links {
+.main__menu {
   position: relative;
-  .submenu {
-    background-color: $primary-color;
+  &__submenu {
     position: absolute;
+    width: 100%;
+    background-color: $primary-color;
+    transform-origin: -50% -50%;
+    top: 100%;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    top: 100%;
-    &__items {
-      text-align: left;
-      width: 100%;
-      padding: 20px 50px 20px 20px;
-      font-size: 0.8em;
-      &:hover {
-        background: $hover-color;
-        box-shadow: 0 0 10px $hover-color;
-        transform: scale(1.05);
-        border-radius: 10px;
-        transition: all 0.5s ease-in-out;
-        color: $white-texte;
-      }
-    }
   }
 }
 
@@ -233,51 +204,63 @@ $height-navbar: 7.5%;
 
 .links {
   color: $white-texte;
+  padding: 20px;
   text-decoration: none;
   letter-spacing: 1px;
+  border: 1px solid black;
   &:hover {
     color: $hover-color;
     transition: all 0.5s ease-in-out;
   }
 }
+
+.sub__links {
+  padding: 20px 0 20px 0;
+  margin: auto;
+  background: red;
+  width: 100%;
+  font-size: 0.8em;
+}
 // branding
 
 .branding {
-  padding-left: 60px;
-  padding-right: 20px;
+  // padding-left: 60px;
+  // padding-right: 20px;
   letter-spacing: 5px;
   font-size: 1.2em;
 }
 
 // arrow
-.arrow {
-  position: relative;
-  margin-top: 5px;
-  margin-left: 10px;
-  margin-right: 5px;
-  height: 11px;
-  width: 2px;
-  background-color: transparent;
 
-  &:after {
-    position: absolute;
-    display: inline-block;
-    content: "";
-    height: 100%;
-    width: 100%;
-    transform: translateX(-3px) rotate(-45deg);
-    background: $white-texte;
-  }
-  &:before {
-    position: absolute;
-    display: inline-block;
-    content: "";
-    height: 100%;
-    width: 100%;
-    transform: translateX(3px) rotate(45deg);
-    background: $white-texte;
-  }
-}
+
+// .arrow {
+//   position: relative;
+//   margin-top: 5px;
+//   margin-left: 10px;
+//   margin-right: 5px;
+//   height: 11px;
+//   width: 2px;
+//   background-color: transparent;
+
+//   &:after {
+//     position: absolute;
+//     display: inline-block;
+//     content: "";
+//     height: 100%;
+//     width: 100%;
+//     transform: translateX(-3px) rotate(-45deg);
+//     background: $white-texte;
+//   }
+//   &:before {
+//     position: absolute;
+//     display: inline-block;
+//     content: "";
+//     height: 100%;
+//     width: 100%;
+//     transform: translateX(3px) rotate(45deg);
+//     background: $white-texte;
+//   }
+// }
 
 // Hamburger definition
 .toggle__button {

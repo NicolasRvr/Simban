@@ -30,6 +30,8 @@ export default {
   width: 100%;
   font-family: "Raleway", sans-serif;
   font-size: 18px;
+  margin: 0;
+  padding: 0;
 }
 
 .white {
