@@ -22,7 +22,7 @@
             ></router-link>
             <ul class="main__menu__submenu" v-if="item.show">
               <router-link
-                class="links sub__links"
+                class="links sub__links main__menu__submenu__items"
                 to="#"
                 v-for="(subitem, id2) in item.menu"
                 :key="id2"
@@ -159,19 +159,15 @@ $height-navbar: 60px;
 .navbar {
   position: fixed;
   width: 100%;
-  // height: $height-navbar;
   display: flex;
   align-items: center;
   background-color: $primary-color;
   &__main {
-    position: relative;
     display: flex;
-    align-items: center;
     &__list {
-      // position:relative;
-      border: 1px solid black;
-      // background: red;
-
+      position: relative; 
+      // tenter de retirer le relative peut donner un truc sympas
+      padding: 20px 30px 20px 30px;
     }
   }
   &__reponsive {
@@ -180,7 +176,7 @@ $height-navbar: 60px;
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    // height: 100vw;
+    height: 100vw;
     width: 10%;
     top: 100%;
     right: 0%;
@@ -188,17 +184,17 @@ $height-navbar: 60px;
 }
 
 .main__menu {
-  position: relative;
   &__submenu {
     position: absolute;
     width: 100%;
     background-color: $primary-color;
     top: 100%;
+    left: 0%;
     display: flex;
     flex-direction: column;
-  }
-  &__items {
-    border: 1px solid black;
+    &__items {
+      padding: 15px 0 15px 0;
+    }
   }
 }
 
@@ -212,10 +208,8 @@ $height-navbar: 60px;
 
 .links {
   color: $white-texte;
-  padding: 20px;
   text-decoration: none;
   letter-spacing: 1px;
-  // border: 1px solid black;
   &:hover {
     color: $hover-color;
     transition: all 0.5s ease-in-out;
@@ -223,9 +217,7 @@ $height-navbar: 60px;
 }
 
 .sub__links {
-  padding: 20px 0 20px 0;
   margin: auto;
-  background: red;
   width: 100%;
   font-size: 0.8em;
   z-index: 1000;
@@ -233,7 +225,7 @@ $height-navbar: 60px;
     color: $white-texte;
     background: $hover-color;
     border-radius: 10px;
-    transform: scale(1.05);
+    transform: scale(1.02);
     transition: all 0.5s ease-in-out;
   }
 }
@@ -242,38 +234,39 @@ $height-navbar: 60px;
 .branding {
   letter-spacing: 5px;
   font-size: 1.2em;
+  padding-left: 40px;
+  padding-right: 20px;
 }
 
 // arrow
 
-// .arrow {
-//   position: relative;
-//   margin-top: 5px;
-//   margin-left: 10px;
-//   margin-right: 5px;
-//   height: 11px;
-//   width: 2px;
-//   background-color: transparent;
-
-//   &:after {
-//     position: absolute;
-//     display: inline-block;
-//     content: "";
-//     height: 100%;
-//     width: 100%;
-//     transform: translateX(-3px) rotate(-45deg);
-//     background: $white-texte;
-//   }
-//   &:before {
-//     position: absolute;
-//     display: inline-block;
-//     content: "";
-//     height: 100%;
-//     width: 100%;
-//     transform: translateX(3px) rotate(45deg);
-//     background: $white-texte;
-//   }
-// }
+.arrow {
+  position: relative;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 5px;
+  height: 11px;
+  width: 2px;
+  background-color: red;
+  &:after {
+    position: absolute;
+    display: inline-block;
+    content: "";
+    height: 100%;
+    width: 100%;
+    transform: translateX(-3px) rotate(-45deg);
+    background: $white-texte;
+  }
+  &:before {
+    position: absolute;
+    display: inline-block;
+    content: "";
+    height: 100%;
+    width: 100%;
+    transform: translateX(3px) rotate(45deg);
+    background: $white-texte;
+  }
+}
 
 // Hamburger definition
 
