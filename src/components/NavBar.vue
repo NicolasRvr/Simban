@@ -1,6 +1,6 @@
 <template>
   <header>
-    <nav class="navbar">
+    <nav class="navbar shadow">
       <router-link
         @click="ResetToggleItems"
         class="links branding"
@@ -20,7 +20,7 @@
             <router-link class="links" to="#" @click="toggleItems(item.name)"
               >{{ item.name }}<span class="arrow"></span
             ></router-link>
-            <ul class="main__menu__submenu" v-if="item.show">
+            <ul class="main__menu__submenu shadow" v-if="item.show">
               <router-link
                 class="links sub__links main__menu__submenu__items"
                 to="#"
@@ -39,8 +39,12 @@
       <div class="toggle__button" @click="toggleMenu">
         <span class="hamburger"></span>
       </div>
-      <ul v-if="showMenu" class="navbar__reponsive">
-        <li v-for="(item, id) in items" :key="id">
+      <ul v-if="showMenu" class="navbar__reponsive shadow">
+        <li
+          class="navbar__reponsive__list"
+          v-for="(item, id) in items"
+          :key="id"
+        >
           <router-link
             @click="ResetToggleItems"
             class="links"
@@ -54,7 +58,7 @@
             ></router-link>
             <ul class="responsive__menu__submenu" v-if="item.show">
               <router-link
-                class="links sub__links"
+                class="links sub__links responsive__menu__submenu__items"
                 to="#"
                 v-for="(subitem, id2) in item.menu"
                 :key="id2"
@@ -76,7 +80,7 @@ export default {
   components: {},
   data() {
     return {
-      showMenu: true,
+      showMenu: false,
       items: [
         {
           name: "Région",
@@ -158,14 +162,17 @@ $height-navbar: 60px;
 // navbar definition
 .navbar {
   position: fixed;
+  top: 0;
+  // position: sticky;
   width: 100%;
   display: flex;
   align-items: center;
   background-color: $primary-color;
+  z-index: 3;
   &__main {
     display: flex;
     &__list {
-      position: relative; 
+      position: relative;
       // tenter de retirer le relative peut donner un truc sympas
       padding: 20px 30px 20px 30px;
     }
@@ -176,10 +183,16 @@ $height-navbar: 60px;
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    height: 100vw;
-    width: 10%;
+    height: 100vh;
+    width: 90%;
     top: 100%;
     right: 0%;
+    &__list {
+      position: relative;
+      padding: 20px 30px 20px 0;
+      margin-left: 20px;
+      // border: 1px solid black;
+    }
   }
 }
 
@@ -194,6 +207,23 @@ $height-navbar: 60px;
     flex-direction: column;
     &__items {
       padding: 15px 0 15px 0;
+    }
+  }
+}
+
+.responsive__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  // justify-content: flex-end;
+  &__submenu {
+    display: flex;
+    flex-direction: column;
+    // border: 1px solid black;
+    width: 100%;
+
+    &__items {
+      padding: 15px 0px 15px 0px;
     }
   }
 }
@@ -225,7 +255,7 @@ $height-navbar: 60px;
     color: $white-texte;
     background: $hover-color;
     border-radius: 10px;
-    transform: scale(1.02);
+    transform: scale(1.1);
     transition: all 0.5s ease-in-out;
   }
 }
@@ -241,13 +271,15 @@ $height-navbar: 60px;
 // arrow
 
 .arrow {
+  display: inline-block;
   position: relative;
-  margin-top: 5px;
+  margin-top: 6px;
   margin-left: 10px;
   margin-right: 5px;
   height: 11px;
   width: 2px;
-  background-color: red;
+  background-color: transparent;
+  z-index: 100;
   &:after {
     position: absolute;
     display: inline-block;
@@ -265,6 +297,10 @@ $height-navbar: 60px;
     width: 100%;
     transform: translateX(3px) rotate(45deg);
     background: $white-texte;
+  }
+  &:hover {
+    color: $hover-color;
+    transition: all 0.5s ease-in-out;
   }
 }
 
@@ -301,4 +337,6 @@ $height-navbar: 60px;
     }
   }
 }
+
+// breakpoint : 1000px
 </style>

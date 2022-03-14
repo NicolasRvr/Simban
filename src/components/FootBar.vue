@@ -31,8 +31,9 @@ export default {
 
 <style lang="scss">
 .footer {
-  position: fixed;
-  bottom: 0;
+  z-index: 5;
+  // position: fixed;
+  // bottom: 0;
   width: 100%;
   height: 20%;
   z-index: 0;
@@ -58,8 +59,9 @@ export default {
 
 .social-icons {
   i {
+    border: 1px solid black;
     padding: 0 20px 0 20px;
-    font-size: 300%;
+    font-size: 200%;
   }
 }
 </style>
