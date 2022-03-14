@@ -80,7 +80,7 @@ export default {
   components: {},
   data() {
     return {
-      showMenu: false,
+      showMenu: true,
       items: [
         {
           name: "Région",
@@ -215,15 +215,16 @@ $height-navbar: 60px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  // justify-content: flex-end;
   &__submenu {
+    position: relative;
     display: flex;
     flex-direction: column;
-    // border: 1px solid black;
     width: 100%;
-
     &__items {
-      padding: 15px 0px 15px 0px;
+      display: flex;
+      justify-content: flex-start;
+      padding: 15px 30px 15px 30px;
+      border: 1px solid black;
     }
   }
 }
