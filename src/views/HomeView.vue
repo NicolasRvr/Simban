@@ -1,19 +1,14 @@
 <template>
-  <div class="main__section">
-    <div
-      class="acceuil__bloc"
-      :style="{
-        backgroundImage:
-          'url(' + require('@/assets/img/mont_saint_michel.jpeg') + ')',
-      }"
-      style="
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-      "
-    >
+  <div
+    class="acceuil main__section baseflex"
+    :style="{
+      backgroundImage:
+        'url(' + require('@/assets/img/mont_saint_michel.jpeg') + ')',
+    }"
+  >
+    <div class="home baseflex">
       <svg
-        class="acceuil__logo"
+        class="home__logo "
         viewBox="0 0 425 463"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -250,11 +245,10 @@
           d="M182.628 340.644C184.346 340.827 185.251 345.004 182.561 345.572C183.299 346.112 184.469 346.844 185.598 345.572C185.742 347.322 183.833 350.022 180.14 350.299C180.98 350.668 182.292 350.836 183.062 350.668C181.723 351.697 183.476 356.038 183.396 357.038C183.285 358.404 182.291 360.005 180.992 360.223C183.32 360.623 184.654 358.559 185.005 357.05C185.473 355.037 184.004 352.692 185.498 351.171"
         />
       </svg>
-      <h1 class="acceuil__title">SIMBAN</h1>
-      <p class="acceuil__text">
+      <!-- <p class="home__text ">
         Syndicats des Internes de Medecine génerale Bas-Normand
-      </p>
-      <div class="btn acceuil__btn">En savoir plus</div>
+      </p> -->
+      <div class="btn home__btn">En savoir plus</div>
     </div>
   </div>
 </template>
@@ -271,7 +265,18 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+
+.baseflex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sborder {
+  border: 1px solid black;
+}
+
 .main__section {
   width: 100%;
   height: 100vh;
@@ -279,67 +284,40 @@ export default {
 
 .acceuil {
   position: relative;
-
-  // background: url(~@/assets/img/mont_saint_michel.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // z-index: 1;
-  border: 1px solid black;
+  background-position: right;
 }
 
-.acceuil__bloc {
-  height: 100%;
-  border: 1px solid black;
-  display: flex;
+.home {
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: $primary-color;
-}
-
-.acceuil__logo {
-  border: 1px solid black;
-  fill: $primary-color;
-  max-width: 30%;
-  // height: auto;
-  // margin-bottom: 15px;
-  margin-top: -5%;
-  cursor: pointer;
-  z-index: 2;
-}
-
-.acceuil__title {
-  border: 1px solid black;
-  letter-spacing: 0.5rem;
-  font-size: 3rem;
-  &:hover {
-    color: red;
-    transition: all 1s ease-in-out;
+  height: 100%;
+  &__logo {
+    fill: $primary-color;
+    max-width: 100%;
+    cursor: pointer;
+    z-index: 2;
   }
-}
-
-.acceuil__text {
-  border: 1px solid black;
-  text-align: center;
-  font-weight: bolder;
-  font-size: 1.5rem;
-}
-
-.acceuil__btn {
-  align-content: center;
-  border: 1px solid $primary-color;
-  background: $primary-color;
-  font-size: 1.4rem;
-  cursor: pointer;
-  color: $text-color;
-  &:hover {
+  &__text {
+    margin: 50px 0 0 0;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    mix-blend-mode: darken;
+  }
+  &__btn {
+    margin: 50px 0 0 0;
+    align-content: center;
+    border: 1px solid $primary-color;
+    background: $primary-color;
+    font-size: 1.4rem;
+    cursor: pointer;
     color: $text-color;
-    background-color: $secondary-color;
-    border-color: $secondary-color;
+    &:hover {
+      color: $text-color;
+      background-color: $secondary-color;
+      border-color: $secondary-color;
+    }
   }
 }
 </style>

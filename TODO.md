@@ -4,7 +4,25 @@
 * [ ] Rendre responsive le site web
     * [ ] aligner les items du sub menu en mode responsive à droite
 * [ ] Faire fonctionner les nouvelles icones fa-brands fa-facebook
-* 
+* [ ] Problème d'aligenement Navbar plein ecran
+https://shouts.dev/articles/add-background-image-in-vuejs-with-examples
+```
+<template>
+  <div :style="cssProps"></div>
+</template>
+
+<script>
+  export default {
+    data() {
+      return {
+        cssProps: {
+          backgroundImage: `url(${require('@/assets/path/to/your/img.jpg')})`
+        }
+      }
+    }
+  }
+</script>
+```
 
 ## Projet
 

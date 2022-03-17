@@ -80,7 +80,7 @@ export default {
   components: {},
   data() {
     return {
-      showMenu: true,
+      showMenu: false,
       items: [
         {
           name: "Région",
@@ -175,6 +175,7 @@ $height-navbar: 60px;
       position: relative;
       // tenter de retirer le relative peut donner un truc sympas
       padding: 20px 30px 20px 30px;
+      // border: 1px solid black;
     }
   }
   &__reponsive {
@@ -274,7 +275,6 @@ $height-navbar: 60px;
 .arrow {
   display: inline-block;
   position: relative;
-  margin-top: 6px;
   margin-left: 10px;
   margin-right: 5px;
   height: 11px;
